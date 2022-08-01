@@ -11,8 +11,11 @@ struct ContentView: View {
     var body: some View {
         ZStack{
             ScrollView{
-                HomeHeader()
-                    .padding()
+                VStack{
+                    HomeHeader()
+                        CustomDivider()
+                }
+                .padding()
             }
             VoiceCommandButton()
         }
@@ -48,6 +51,7 @@ struct VoiceCommandButton: View {
         }
         .edgesIgnoringSafeArea(.all)
     }
+    
 }
 
 
@@ -73,6 +77,7 @@ struct HomeHeader:View{
                 GeneralButton(icon: "gear")
             }
         }
+        .padding(.top)
     }
     
     
@@ -90,5 +95,15 @@ struct GeneralButton:View {
                 Circle()
                     .stroke(Color.white.opacity(0.1),lineWidth:0.5)
             }
+    }
+}
+
+struct CustomDivider: View {
+    var body: some View{
+        Rectangle()
+            .frame(maxWidth:.infinity)
+            .frame(height:0.5)
+            .background(Color.white)
+            .opacity(0.1)
     }
 }
