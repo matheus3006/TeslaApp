@@ -12,10 +12,13 @@ struct ContentView: View {
         ZStack{
             ScrollView{
                 HomeHeader()
-                .padding()
+                    .padding()
             }
             VoiceCommandButton()
         }
+        .frame(maxWidth:.infinity,maxHeight:.infinity)
+        .background(Color("Background"))
+        .foregroundColor(Color.white)
     }
 }
 
@@ -28,21 +31,22 @@ struct ContentView_Previews: PreviewProvider {
 
 struct VoiceCommandButton: View {
     var body: some View {
-            VStack{
+        VStack{
+            Spacer()
+            HStack{
                 Spacer()
-                HStack{
-                    Spacer()
-                    Image(systemName:"mic.fill")
-                        .font(.system(size:24,weight:.semibold,design:
+                Image(systemName:"mic.fill")
+                    .font(.system(size:24,weight:.semibold,design:
                             .default))
-                        .frame(width: 64, height: 64)
-                        .background(Color.green)
-                        .clipShape(Circle())
-                        .padding()
-                        .shadow(radius: 10)
-                }
+                    .frame(width: 64, height: 64)
+                    .background(Color("Green"))
+                    .foregroundColor(Color("DarkGray"))
+                    .clipShape(Circle())
+                    .padding()
+                    .shadow(radius: 10)
             }
-            .edgesIgnoringSafeArea(.all)
+        }
+        .edgesIgnoringSafeArea(.all)
     }
 }
 
@@ -57,7 +61,7 @@ struct HomeHeader:View{
                     .padding(.vertical,4)
                     .padding(.horizontal,8)
                     .foregroundColor(Color.white)
-                    .background(Color.red)
+                    .background(Color("Red"))
                     .clipShape(Capsule())
                 Text("Mach Five")
                     .font(.largeTitle)
@@ -65,10 +69,26 @@ struct HomeHeader:View{
             }
             Spacer()
             HStack{
-                
+                GeneralButton(icon: "lock.fill")
+                GeneralButton(icon: "gear")
             }
         }
     }
-        
-        
+    
+    
+}
+
+struct GeneralButton:View {
+    var icon: String
+    var body: some View {
+        Image(systemName: icon)
+            .imageScale(.large)
+            .frame(width: 44, height: 44)
+            .background(Color.white.opacity(0.05))
+            .clipShape(Circle())
+            .overlay(){
+                Circle()
+                    .stroke(Color.white.opacity(0.1),lineWidth:0.5)
+            }
+    }
 }
