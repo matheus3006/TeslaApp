@@ -11,9 +11,10 @@ struct ContentView: View {
     var body: some View {
         ZStack{
             ScrollView{
-                VStack{
+                VStack(spacing: 10){
                     HomeHeader()
                         CustomDivider()
+                        CarSection()
                 }
                 .padding()
             }
@@ -102,8 +103,31 @@ struct CustomDivider: View {
     var body: some View{
         Rectangle()
             .frame(maxWidth:.infinity)
-            .frame(height:0.5)
+            .frame(height:0.25)
             .background(Color.white)
             .opacity(0.1)
+    }
+}
+
+struct CarSection: View {
+    var body: some View {
+        VStack{
+            HStack(alignment: .center){
+                HStack{
+                    Image(systemName: "battery.75")
+                    Text("237 miles".uppercased())
+                }
+                .font(.system(size: 14, weight: .semibold, design: .rounded))
+                .foregroundColor(Color("Green"))
+                Spacer()
+                VStack(alignment: .trailing){
+                    Text("Parked")
+                        .fontWeight(.semibold)
+                    Text("Last updated: 5min ago")
+                        .font(.caption2)
+                        .foregroundColor(.gray)
+                }
+            }
+        }
     }
 }
