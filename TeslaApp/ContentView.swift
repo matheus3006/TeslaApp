@@ -13,8 +13,13 @@ struct ContentView: View {
             ScrollView{
                 VStack(spacing: 10){
                     HomeHeader()
-                        CustomDivider()
-                        CarSection()
+                    CustomDivider()
+                    CarSection()
+                    CustomDivider()
+                    CategoryView()
+                    CustomDivider()
+                    CategoryView()
+                    
                 }
                 .padding()
             }
@@ -74,8 +79,14 @@ struct HomeHeader:View{
             }
             Spacer()
             HStack{
-                GeneralButton(icon: "lock.fill")
-                GeneralButton(icon: "gear")
+                Button(action: {}){
+                    GeneralButton(icon: "lock.fill")
+                }
+                
+                Button(action: {}){
+                    GeneralButton(icon: "gear")
+                }
+               
             }
         }
         .padding(.top)
@@ -111,7 +122,7 @@ struct CustomDivider: View {
 
 struct CarSection: View {
     var body: some View {
-        VStack{
+        VStack(spacing: 10){
             HStack(alignment: .center){
                 HStack{
                     Image(systemName: "battery.75")
@@ -127,6 +138,29 @@ struct CarSection: View {
                         .font(.caption2)
                         .foregroundColor(.gray)
                 }
+            }
+            Image("car_img")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+        }
+    }
+}
+
+struct CategoryView : View{
+    var body: some View{
+        VStack{
+            HStack(alignment: .center){
+                Text("Quick Shortcusts")
+                    .font(.title2)
+                    .fontWeight(.semibold)
+
+                Spacer()
+                Button(action: {}){
+                    Text("Edit")
+                        .foregroundColor(.gray)
+                        .fontWeight(.medium)
+                }
+                
             }
         }
     }
