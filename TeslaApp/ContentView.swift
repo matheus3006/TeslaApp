@@ -178,10 +178,28 @@ struct CategoryView : View{
             CategoryHeader(title: title, showEdit: showEdit)
             
             ScrollView(.horizontal, showsIndicators: false){
-                HStack{
-                    Text("Hello")
+                HStack(alignment: .top){
+                    ActionButton(icon: "bolt.fill", text: "Chargin")
+                    ActionButton(icon: "fanblades.fill", text: "Fan On")
+                    ActionButton(icon: "music.note", text: "Media Controls")
+                    ActionButton(icon: "bolt.car", text: "Close Charge Port")
                 }
             }
+        }
+    }
+}
+
+struct ActionButton: View{
+    var icon: String
+    var text: String
+    
+    var body: some View{
+        VStack(alignment: .center){
+            GeneralButton(icon: icon)
+            Text(text)
+                .frame(width: 72)
+                .font(.system(size: 12, weight: .semibold, design: .default))
+                .multilineTextAlignment(.center)
         }
     }
 }
