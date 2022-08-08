@@ -16,9 +16,9 @@ struct ContentView: View {
                     CustomDivider()
                     CarSection()
                     CustomDivider()
-                    CategoryView()
+                    CategoryView(title: "Quick Shortcuts",showEdit: true)
                     CustomDivider()
-                    CategoryView()
+                    CategoryView(title: "Recent Actions")
                     
                 }
                 .padding()
@@ -86,7 +86,7 @@ struct HomeHeader:View{
                 Button(action: {}){
                     GeneralButton(icon: "gear")
                 }
-               
+                
             }
         }
         .padding(.top)
@@ -146,21 +146,41 @@ struct CarSection: View {
     }
 }
 
-struct CategoryView : View{
+struct CategoryHeader : View{
+    var title: String
+    var showEdit: Bool = false
+    
     var body: some View{
-        VStack{
-            HStack(alignment: .center){
-                Text("Quick Shortcusts")
-                    .font(.title2)
-                    .fontWeight(.semibold)
-
-                Spacer()
+        HStack(alignment: .center){
+            Text(title)
+                .font(.title2)
+                .fontWeight(.semibold)
+            
+            Spacer()
+            if showEdit{
                 Button(action: {}){
                     Text("Edit")
                         .foregroundColor(.gray)
                         .fontWeight(.medium)
                 }
-                
+            }
+            
+        }
+    }
+}
+
+struct CategoryView : View{
+    var title: String
+    var showEdit: Bool = false
+    
+    var body: some View{
+        VStack{
+            CategoryHeader(title: title, showEdit: showEdit)
+            
+            ScrollView(.horizontal, showsIndicators: false){
+                HStack{
+                    Text("Hello")
+                }
             }
         }
     }
